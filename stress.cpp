@@ -55,6 +55,10 @@ vector<vector<int>> gen_graph(int n) {
 }
 
 int main() {
-  check(bfs(gen_graph(N)));
-  check(bfs_par(gen_graph(N)));
+  omp_set_dynamic(1);
+  omp_set_num_threads(4);
+
+  auto graph = gen_graph(N);
+  check(bfs(graph));
+  check(bfs_par(graph));
 }
